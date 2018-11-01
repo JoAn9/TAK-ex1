@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+
+    const count = (a, b, c) => {
+      let numb = 0;
+      let result = [];
+      let division = 0;
+      let rest = 0;
+      let restToMove = 0;
+      let elementToArray = 0;
+      const aString = a.toString();
+      
+      for (let i = 0; i < 100000; i++) {
+        let numb = Number(aString[i] ? aString[i] : 0) + restToMove;
+        division = numb / b;
+        rest = numb % b;
+        elementToArray = division.toString();
+        elementToArraySliced = elementToArray.slice(0, elementToArray.indexOf('.'));
+
+        result.push(rest === 0 ? elementToArray : elementToArraySliced);
+        restToMove = rest * 10;
+      }
+
+      console.log(result);      
+      console.log(result[c-1]);
+    };
+
+    count(10000, 8, 2);
+
+  </script>
+
+  <!-- <script src="index.js"></script> -->
+</body>
+</html>
