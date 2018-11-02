@@ -4,37 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>TAK</title>
 </head>
 <body>
 
   <script>
 
     const count = (a, b, c) => {
-      let numb = 0;
-      let result = [];
+      const aString = a.toString();      
       let division = 0;
       let rest = 0;
       let restToMove = 0;
-      let elementToArray = 0;
-      const aString = a.toString();
-      
-      for (let i = 0; i < 100000; i++) {
+      let element = 0;
+      let isZero = true;
+      let value = 0;
+      let counter = 0;
+
+      for (let i = 0; i < 100000000; i++) {
         let numb = Number(aString[i] ? aString[i] : 0) + restToMove;
         division = numb / b;
         rest = numb % b;
-        elementToArray = division.toString();
-        elementToArraySliced = elementToArray.slice(0, elementToArray.indexOf('.'));
-
-        result.push(rest === 0 ? elementToArray : elementToArraySliced);
+        if (division >= 1) {
+          isZero = false;
+        }
+        if (!isZero) {
+          counter++;
+          if(counter === c) {
+            element = division.toString();
+            elementSliced = element.slice(0, element.indexOf('.'));
+            value = rest === 0 ? element : elementSliced;
+            break;
+          }
+        }
         restToMove = rest * 10;
       }
-
-      console.log(result);      
-      console.log(result[c-1]);
+      console.log(a/b);
+      console.log(value);
     };
 
+    count(2, 3, 1);
+    count(2, 3, 10000);    
+
+    count(10000, 8, 1);    
     count(10000, 8, 2);
+    count(10000, 8, 3);
+    count(10000, 8, 300000);
 
   </script>
 
